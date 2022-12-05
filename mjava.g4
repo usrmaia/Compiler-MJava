@@ -1,11 +1,11 @@
 grammar mjava;
 //line 1:0 mismatched input 'class Factorial' expecting 'class'
 prog: 
-    main (classe)*
+    main classe*
     ;
 
 main: 
-    'class' ID_ '{' 
+    'class' ' ' ID_ '{' 
         'public' 'static' 'void' 'main' '(' 'String' '[' ']' ID_ ')' '{'
             cmd 
         '}' 
@@ -49,64 +49,29 @@ cmd
     | ID_ '[' exp ']' '=' exp ';'
     ;
 
-/*
-Caso 1
-○ A → Aα | β
-
-○ A → βR
-○ R → αR | ε
-
-Caso 2
-○ expr → expr ‘+’ termo | expr ‘-’ termo | termo | constante
-
-○ expr → termo expr2 | constante expr2
-○ expr2 → ‘+’ termo expr2 | ‘-’ termo expr2 | ε
-*/
-/*
 exp
     : exp '&&' rexp
     | rexp
     ;
-*/
 
-exp
-    : rexp | rexp '&&' exp ;
-
-/*
 rexp
     : rexp '<' aexp
     | rexp '==' aexp
     | rexp '!=' aexp
     | aexp
     ;
-*/
 
-rexp:
-    aexp | aexp ('<' | '==' | '!=') rexp
-    ;
-
-/*
 aexp
     : aexp '+' mexp
     | aexp '-' mexp
     | mexp
     ;
-*/
 
-aexp:
-    mexp | mexp ('+' | '-') aexp
-    ;
-
-/*
 mexp
     : mexp '*' sexp
     | mexp '/' sexp
     | sexp
     ;
-*/
-
-mexp:
-    sexp | sexp ('*' | '/') mexp ;
 
 sexp
     : '!' sexp
@@ -120,30 +85,19 @@ sexp
     | pexp
     ;
 
-/*
 pexp
-    : ID
+    : ID_
     | 'this'
-    | 'new' ID '(' ')'
+    | 'new' 'id' '(' ')'
     | '(' exp ')'
-    | pexp '.' ID
-    | pexp '.' ID '(' '[' exps ']' ')'
+    | pexp '.' ID_
+    | pexp '.' ID_ '(' (exps)* ')' //perguntar bonfim
     ;
-*/
 
-pexp:
-    '.' ID_ | '.' ID_ '(' '[' exps ']' ')' |
-    '.' ID_ pexp | '.' ID_ '(' '[' exps ']' ')' pexp|
-    ID_
-    | 'this'
-    | 'new' ID_ '(' ')'
-    | '(' exp ')'
-;
-
-
-exps: 
-    exp (',' exp)*
+exps
+    : exp (',' exp)*
     ;
+
 ID_: 
     //[a-z]+
     //ID
@@ -153,12 +107,31 @@ ID_:
 
 COMMENT 
     : '/*' TEXT '*/'
-    | '//' TEXT EOF
+    | '//' TEXT LINEBREAK
     ;
-TEXT : ([a-z] | [A-Z] | [0-9] | ' ')+;
+
+TEXT: ([a-z] | [A-Z] | [0-9] | ' ')+;
+
 WHITESPACE
+    : ' ' -> skip
+    ;
+
+LINEBREAK
     : [\n]+ -> skip
     ;
+
+TAB
+    : [\t]+ -> skip
+    ;
+
+RETURN
+    : [\r]+ -> skip
+    ;
+
+PAGEFEATURE
+    : [\f]+ -> skip
+    ;
+
 //EOF: [\n] ;
 /*
 Espaços em branco: [ \n \t \r \f ]
