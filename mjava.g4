@@ -1,42 +1,56 @@
 grammar mjava;
-//line 1:0 mismatched input 'class Factorial' expecting 'class'
+
+WHITESPACE : [ \b\t\n\r] -> skip; 
+
+ID: ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_')*
+    ;
+
+COMMENT 
+    : '/*' TEXT '*/'
+    | '//' TEXT 
+    ;
+
+TEXT: ([a-z] | [A-Z] | [0-9] | ' ')+
+    ;
+
 prog: 
-    main classe*
+    main
+    classe*
     ;
 
 main: 
-    'class' ' ' ID_ '{' 
-        'public' 'static' 'void' 'main' '(' 'String' '[' ']' ID_ ')' '{'
+    'class' ID '{' 
+        'public' 'static' 'void' 'main' '(' 'String' '[' ']' ID ')' '{'
             cmd 
         '}' 
     '}'
     ;
 
 classe: 
-    'class' ID_ ('[' 'extends' ID_ ']')? '{' 
+    'class' ID ('extends' ID)? '{' 
         (var | metodo)* 
     '}'
     ;
 
 var: 
-    tipo ID_ 
+    tipo ID 
     ;
 
 metodo: 
-    'public' tipo ID_ '(' (params)? ')' '{' 
+    'public' tipo ID '(' (params)? ')' '{' 
         (var | cmd)* 'return' exp ';' 
     '}'
     ;
 
 // Revisar params
 params: 
-    tipo ID_ (',' tipo ID_)*;
+    tipo ID (',' tipo ID)*;
 
 tipo
     : 'int' ('[' ']')*
     | 'int'
     | 'boolean'
-    | ID_ 
+    | ID 
     ;
 
 cmd
@@ -45,8 +59,8 @@ cmd
     | 'if' '(' exp ')' cmd 'else' cmd
     | 'while' '(' exp ')' cmd
     | 'System.out.println' '(' exp ')' ';'
-    | ID_ '=' exp ';'
-    | ID_ '[' exp ']' '=' exp ';'
+    | ID '=' exp ';'
+    | ID '[' exp ']' '=' exp ';'
     ;
 
 exp
@@ -86,56 +100,15 @@ sexp
     ;
 
 pexp
-    : ID_
+    : ID
     | 'this'
-    | 'new' 'id' '(' ')'
+    | 'new' ID '(' ')'
     | '(' exp ')'
-    | pexp '.' ID_
-    | pexp '.' ID_ '(' (exps)* ')' //perguntar bonfim
+    | pexp '.' ID
+    | pexp '.' ID '(' (exps)* ')' //perguntar bonfim
     ;
 
 exps
     : exp (',' exp)*
     ;
 
-ID_: 
-    //[a-z]+
-    //ID
-    //IDENTIFIER
-    ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '-' | '_')*
-    ;
-
-COMMENT 
-    : '/*' TEXT '*/'
-    | '//' TEXT LINEBREAK
-    ;
-
-TEXT: ([a-z] | [A-Z] | [0-9] | ' ')+;
-
-WHITESPACE
-    : ' ' -> skip
-    ;
-
-LINEBREAK
-    : [\n]+ -> skip
-    ;
-
-TAB
-    : [\t]+ -> skip
-    ;
-
-RETURN
-    : [\r]+ -> skip
-    ;
-
-PAGEFEATURE
-    : [\f]+ -> skip
-    ;
-
-//EOF: [\n] ;
-/*
-Espaços em branco: [ \n \t \r \f ]
-• Comentários: dois tipos de comentário, um começando com // e indo até o final
-da linha, o outro começando com /* e terminando com */
-
-// COMMENT

@@ -14,3 +14,14 @@ class Fac {
             return numaux;
     }
 }
+
+class Fac2 extends outraFuncao{
+    public int ComputeFac(int num){
+        if (num < 1)
+            numaux = 1;
+            else
+            numaux = num * (this.ComputeFac(num-1));
+            return numaux;
+    }
+        int numaux;
+}
