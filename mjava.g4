@@ -152,7 +152,7 @@ pexp
     | 'new' ID '(' ')'
     | '(' exp ')'
     | pexp '.' ID
-    | pexp '.' ID '(' (exps)* ')' //perguntar bonfim
+    | pexp '.' ID '(' (exps)? ')' //perguntar bonfim
     ;
 
 exps
