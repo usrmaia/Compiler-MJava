@@ -1,6 +1,14 @@
 grammar mjava;
 
-WHITESPACE : [ \b\t\n\r] -> skip; 
+WHITESPACE : ([ \b\t\n\r] | COMMENTLINE | COMMENTLINES) -> skip; 
+
+COMMENTLINE
+    : '/*' .*? '*/'
+    ;
+
+COMMENTLINES
+    : '//' .*? [\n] 
+    ;
 
 RESERVEDWORDS
     : 'boolean'
@@ -50,10 +58,6 @@ OPERATORSPOINTING
     | '!'
     ;
 
-COMMENT 
-    : '/*' ([a-z] | [A-Z] | [0-9] | ' ')* '*/'
-    | '//' ([a-z] | [A-Z] | [0-9] | ' ')* [\n] 
-    ;
 
 ID
     : ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_' | '-')*
@@ -67,7 +71,7 @@ prog:
 main: 
     'class' ID '{' 
         'public' 'static' 'void' 'main' '(' 'String' '[' ']' ID ')' '{'
-            cmd 
+            cmd? 
         '}' 
     '}'
     ;

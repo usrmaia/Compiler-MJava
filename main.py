@@ -11,13 +11,16 @@ def main(argv):
     parser = mjavaParser(stream)
     tree = parser.prog()
     parser.ProgContext(tree)
+    #print(lexer.token)
 
     lisp_tree_str = tree.toStringTree(recog=parser)
     # print(lisp_tree_str)
 
     walker = ParseTreeWalker()
     walker.walk(mjavaListener(), tree)
-    print()
+
+    #print(lexer._interp)
+    # for l in list(lexer.decisionsToDFA): print(list(l))
 
 if __name__ == '__main__':
     main(sys.argv)
