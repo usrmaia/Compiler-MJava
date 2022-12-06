@@ -14,7 +14,7 @@ def main(argv):
     #print(tree.input_txt())
 
     lisp_tree_str = tree.toStringTree(recog=parser)
-    #print(lisp_tree_str)
+    print(lisp_tree_str)
 
     walker = ParseTreeWalker()
     walker.walk(mjavaListener(), tree)

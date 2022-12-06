@@ -2,15 +2,61 @@ grammar mjava;
 
 WHITESPACE : [ \b\t\n\r] -> skip; 
 
-ID: ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_')*
+RESERVEDWORDS
+    : 'boolean'
+    | 'class'
+    | 'extends'
+    | 'public'
+    | 'static'
+    | 'void'
+    | 'main'
+    | 'String'
+    | 'return'
+    | 'int'
+    | 'if'
+    | 'else'
+    | 'while'
+    | 'System.out.println'
+    | 'length'
+    | 'true'
+    | 'false'
+    | 'this'
+    | 'new'
+    ;
+
+NUMBER
+    : [0-9]+
+    ;
+
+OPERATORSPOINTING
+    : '('
+    | ')'
+    | '['
+    | ']'
+    | '{'
+    | '}'
+    | ';'
+    | '.'
+    | ','
+    | '='
+    | '<'
+    | '=='
+    | '!='
+    | '+'
+    | '-'
+    | '*'
+    | '/'
+    | '&&'
+    | '!'
     ;
 
 COMMENT 
-    : '/*' TEXT '*/'
-    | '//' TEXT 
+    : '/*' ([a-z] | [A-Z] | [0-9] | ' ')* '*/'
+    | '//' ([a-z] | [A-Z] | [0-9] | ' ')* [\n] 
     ;
 
-TEXT: ([a-z] | [A-Z] | [0-9] | ' ')+
+ID
+    : ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_' | '-')*
     ;
 
 prog: 
@@ -33,7 +79,7 @@ classe:
     ;
 
 var: 
-    tipo ID 
+    tipo ID ';'
     ;
 
 metodo: 
@@ -92,7 +138,7 @@ sexp
     | '-' sexp
     | 'true'
     | 'false'
-    | 'num'
+    //| 'num' //perguntar
     | 'new' 'int' '[' exp ']'
     | pexp '.' 'length'
     | pexp '[' exp ']'
@@ -101,6 +147,7 @@ sexp
 
 pexp
     : ID
+    | NUMBER //nao havia numeros
     | 'this'
     | 'new' ID '(' ')'
     | '(' exp ')'
@@ -111,4 +158,3 @@ pexp
 exps
     : exp (',' exp)*
     ;
-
