@@ -21,7 +21,7 @@ public class mjavaLexer extends Lexer {
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
 		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
-		WHITESPACE=39, COMMENTLINE=40, COMMENTLINES=41, RESERVEDWORDS=42, NUMBER=43, 
+		WHITESPACE=39, COMMENTLINES=40, COMMENTLINE=41, RESERVEDWORDS=42, NUMBER=43, 
 		OPERATORSPOINTING=44, ID=45;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
@@ -37,8 +37,8 @@ public class mjavaLexer extends Lexer {
 			"T__9", "T__10", "T__11", "T__12", "T__13", "T__14", "T__15", "T__16", 
 			"T__17", "T__18", "T__19", "T__20", "T__21", "T__22", "T__23", "T__24", 
 			"T__25", "T__26", "T__27", "T__28", "T__29", "T__30", "T__31", "T__32", 
-			"T__33", "T__34", "T__35", "T__36", "T__37", "WHITESPACE", "COMMENTLINE", 
-			"COMMENTLINES", "RESERVEDWORDS", "NUMBER", "OPERATORSPOINTING", "ID"
+			"T__33", "T__34", "T__35", "T__36", "T__37", "WHITESPACE", "COMMENTLINES", 
+			"COMMENTLINE", "RESERVEDWORDS", "NUMBER", "OPERATORSPOINTING", "ID"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -58,7 +58,7 @@ public class mjavaLexer extends Lexer {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, "WHITESPACE", "COMMENTLINE", "COMMENTLINES", "RESERVEDWORDS", 
+			null, null, null, "WHITESPACE", "COMMENTLINES", "COMMENTLINE", "RESERVEDWORDS", 
 			"NUMBER", "OPERATORSPOINTING", "ID"
 		};
 	}
@@ -206,7 +206,7 @@ public class mjavaLexer extends Lexer {
 		"\u00f7\7n\2\2\u00f7\u00f8\7g\2\2\u00f8\u00f9\7p\2\2\u00f9\u00fa\7i\2\2"+
 		"\u00fa\u00fb\7v\2\2\u00fb\u00fc\7j\2\2\u00fcL\3\2\2\2\u00fd\u00fe\7v\2"+
 		"\2\u00fe\u00ff\7j\2\2\u00ff\u0100\7k\2\2\u0100\u0101\7u\2\2\u0101N\3\2"+
-		"\2\2\u0102\u0106\t\2\2\2\u0103\u0106\5Q)\2\u0104\u0106\5S*\2\u0105\u0102"+
+		"\2\2\u0102\u0106\t\2\2\2\u0103\u0106\5S*\2\u0104\u0106\5Q)\2\u0105\u0102"+
 		"\3\2\2\2\u0105\u0103\3\2\2\2\u0105\u0104\3\2\2\2\u0106\u0107\3\2\2\2\u0107"+
 		"\u0108\b(\2\2\u0108P\3\2\2\2\u0109\u010a\7\61\2\2\u010a\u010b\7,\2\2\u010b"+
 		"\u010f\3\2\2\2\u010c\u010e\13\2\2\2\u010d\u010c\3\2\2\2\u010e\u0111\3"+

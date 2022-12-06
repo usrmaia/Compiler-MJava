@@ -11,10 +11,10 @@ def main(argv):
     parser = mjavaParser(stream)
     tree = parser.prog()
     parser.ProgContext(tree)
-    #print(lexer.token)
+    # print(parser.token)
 
     lisp_tree_str = tree.toStringTree(recog=parser)
-    # print(lisp_tree_str)
+    #print(lisp_tree_str)
 
     walker = ParseTreeWalker()
     walker.walk(mjavaListener(), tree)

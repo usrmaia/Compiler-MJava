@@ -2,11 +2,11 @@ grammar mjava;
 
 WHITESPACE : ([ \b\t\n\r] | COMMENTLINE | COMMENTLINES) -> skip; 
 
-COMMENTLINE
+COMMENTLINES
     : '/*' .*? '*/'
     ;
 
-COMMENTLINES
+COMMENTLINE
     : '//' .*? [\n] 
     ;
 
@@ -63,9 +63,8 @@ ID
     : ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_' | '-')*
     ;
 
-prog: 
-    main
-    classe*
+prog
+    : classe* main classe*
     ;
 
 main: 

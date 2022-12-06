@@ -117,8 +117,8 @@ def serializedATN():
         buf.write("\7p\2\2\u00f9\u00fa\7i\2\2\u00fa\u00fb\7v\2\2\u00fb\u00fc")
         buf.write("\7j\2\2\u00fcL\3\2\2\2\u00fd\u00fe\7v\2\2\u00fe\u00ff")
         buf.write("\7j\2\2\u00ff\u0100\7k\2\2\u0100\u0101\7u\2\2\u0101N\3")
-        buf.write("\2\2\2\u0102\u0106\t\2\2\2\u0103\u0106\5Q)\2\u0104\u0106")
-        buf.write("\5S*\2\u0105\u0102\3\2\2\2\u0105\u0103\3\2\2\2\u0105\u0104")
+        buf.write("\2\2\2\u0102\u0106\t\2\2\2\u0103\u0106\5S*\2\u0104\u0106")
+        buf.write("\5Q)\2\u0105\u0102\3\2\2\2\u0105\u0103\3\2\2\2\u0105\u0104")
         buf.write("\3\2\2\2\u0106\u0107\3\2\2\2\u0107\u0108\b(\2\2\u0108")
         buf.write("P\3\2\2\2\u0109\u010a\7\61\2\2\u010a\u010b\7,\2\2\u010b")
         buf.write("\u010f\3\2\2\2\u010c\u010e\13\2\2\2\u010d\u010c\3\2\2")
@@ -233,8 +233,8 @@ class mjavaLexer(Lexer):
     T__36 = 37
     T__37 = 38
     WHITESPACE = 39
-    COMMENTLINE = 40
-    COMMENTLINES = 41
+    COMMENTLINES = 40
+    COMMENTLINE = 41
     RESERVEDWORDS = 42
     NUMBER = 43
     OPERATORSPOINTING = 44
@@ -253,7 +253,7 @@ class mjavaLexer(Lexer):
             "'new'", "'.'", "'length'", "'this'" ]
 
     symbolicNames = [ "<INVALID>",
-            "WHITESPACE", "COMMENTLINE", "COMMENTLINES", "RESERVEDWORDS", 
+            "WHITESPACE", "COMMENTLINES", "COMMENTLINE", "RESERVEDWORDS", 
             "NUMBER", "OPERATORSPOINTING", "ID" ]
 
     ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
@@ -262,7 +262,7 @@ class mjavaLexer(Lexer):
                   "T__20", "T__21", "T__22", "T__23", "T__24", "T__25", 
                   "T__26", "T__27", "T__28", "T__29", "T__30", "T__31", 
                   "T__32", "T__33", "T__34", "T__35", "T__36", "T__37", 
-                  "WHITESPACE", "COMMENTLINE", "COMMENTLINES", "RESERVEDWORDS", 
+                  "WHITESPACE", "COMMENTLINES", "COMMENTLINE", "RESERVEDWORDS", 
                   "NUMBER", "OPERATORSPOINTING", "ID" ]
 
     grammarFileName = "mjava.g4"

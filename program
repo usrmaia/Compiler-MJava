@@ -17,20 +17,20 @@ class Fac {
     public int ComputeFac(int num){
         int numaux;
         if (num < 1)
-            numaux = 1;
+            num_aux = 1;
             else
-            numaux = num * (this.ComputeFac(num-1));
-            return numaux;
+            num_aux = num * (this.ComputeFac(num-1));
+            return num_aux;
     }
 }
 
 class Fac2 extends outraFuncao{
     public int ComputeFac(int num){
         if (num < 1)
-            numaux = 1;
+            num-aux = 1;
             else
-            numaux = num * (this.ComputeFac(num-1));
-            return numaux;
+            num-aux = num * (this.ComputeFac(num-1));
+            return num-aux;
     }
         int numaux;
 }
