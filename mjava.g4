@@ -1,68 +1,6 @@
 grammar mjava;
 
-WHITESPACE : ([ \b\t\n\r] | COMMENTLINE | COMMENTLINES) -> skip; 
-
-COMMENTLINES
-    : '/*' .*? '*/'
-    ;
-
-COMMENTLINE
-    : '//' .*? [\n] 
-    ;
-
-RESERVEDWORDS
-    : 'boolean'
-    | 'class'
-    | 'extends'
-    | 'public'
-    | 'static'
-    | 'void'
-    | 'main'
-    | 'String'
-    | 'return'
-    | 'int'
-    | 'if'
-    | 'else'
-    | 'while'
-    | 'System.out.println'
-    | 'length'
-    | 'true'
-    | 'false'
-    | 'this'
-    | 'new'
-    ;
-
-NUMBER
-    : [0-9]+
-    ;
-
-OPERATORSPOINTING
-    : '('
-    | ')'
-    | '['
-    | ']'
-    | '{'
-    | '}'
-    | ';'
-    | '.'
-    | ','
-    | '='
-    | '<'
-    | '=='
-    | '!='
-    | '+'
-    | '-'
-    | '*'
-    | '/'
-    | '&&'
-    | '!'
-    ;
-
-
-ID
-    : ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_' | '-')*
-    ;
-
+// Parser
 prog
     : classe* main classe*
     ;
@@ -91,7 +29,6 @@ metodo:
     '}'
     ;
 
-// Revisar params
 params: 
     tipo ID (',' tipo ID)*;
 
@@ -160,4 +97,73 @@ pexp
 
 exps
     : exp (',' exp)*
+    ;
+
+// Lexers
+IGNORE 
+    : (WHITESPACE | COMMENTLINE | COMMENTLINES) -> skip
+    ;
+
+WHITESPACE
+    : [ \b\t\n\r]
+    ;
+
+COMMENTLINES
+    : '/*' .*? '*/'
+    ;
+
+COMMENTLINE
+    : '//' .*? [\n] 
+    ;
+
+RESERVEDWORDS
+    : 'boolean'
+    | 'class'
+    | 'extends'
+    | 'public'
+    | 'static'
+    | 'void'
+    | 'main'
+    | 'String'
+    | 'return'
+    | 'int'
+    | 'if'
+    | 'else'
+    | 'while'
+    | 'System.out.println'
+    | 'length'
+    | 'true'
+    | 'false'
+    | 'this'
+    | 'new'
+    ;
+
+NUMBER
+    : [0-9]+
+    ;
+
+OPERATORSPOINTING
+    : '('
+    | ')'
+    | '['
+    | ']'
+    | '{'
+    | '}'
+    | ';'
+    | '.'
+    | ','
+    | '='
+    | '<'
+    | '=='
+    | '!='
+    | '+'
+    | '-'
+    | '*'
+    | '/'
+    | '&&'
+    | '!'
+    ;
+
+ID
+    : ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9] | '_' | '-')*
     ;
