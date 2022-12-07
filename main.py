@@ -11,13 +11,13 @@ def main(argv):
     stream = CommonTokenStream(lexer)
     parser = mjavaParser(stream)
     tree = parser.prog()
-    parser.ProgContext(tree)
+    #parser.ProgContext(tree)
 
-    lisp_tree_str = tree.toStringTree(recog=parser)
+    #lisp_tree_str = tree.toStringTree(recog=parser)
     #print(lisp_tree_str)
 
-    walker = ParseTreeWalker()
-    walker.walk(mjavaListener(), tree)
+    #walker = ParseTreeWalker()
+    #walker.walk(mjavaListener(), tree)
 
 if __name__ == '__main__':
     main(sys.argv)
